@@ -18,6 +18,17 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
   },
+  "paths": {
+    "@domain/*": [
+      "./src/@core/domain/*"
+    ],
+    "@application/*": [
+      "./src/@core/application/*"
+    ],
+    "@infra/*": [
+      "./src/@core/infra/*"
+    ]
+  },
   "watchOptions": {
     "watchFile": "priorityPollingInterval",
     "watchDirectory": "dynamicprioritypolling",

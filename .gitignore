@@ -5,6 +5,7 @@
 # Logs
 logs
 *.log
+.pnpm-store
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
