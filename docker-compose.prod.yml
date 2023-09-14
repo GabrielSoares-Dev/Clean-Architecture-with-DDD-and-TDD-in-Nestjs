@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+ clean-architecture-with-ddd-and-tdd:
+  container_name: clean-architecture-with-ddd-and-tdd
+  # image: colocar image
+  restart: always
+  ports:
+   - "3333:3333"
+  networks:
+   - clean-architecture-with-ddd-and-tdd-network
+  env_file:
+    - stack.env
+networks:
+  clean-architecture-with-ddd-and-tdd-network:
+   name: clean-architecture-with-ddd-and-tdd-network
+   driver: bridge

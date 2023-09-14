@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  clean-architecture-with-ddd-and-tdd:
+    container_name: clean-architecture-with-ddd-and-tdd
+    build: 
+     context: .
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+      - node-modules-clean-architecture-with-ddd-and-tdd:/app/node_modules
+    networks:
+      - clean-architecture-with-ddd-and-tdd-network
+volumes:
+  node-modules-clean-architecture-with-ddd-and-tdd:
+    name: node-modules-clean-architecture-with-ddd-and-tdd
+networks:
+  clean-architecture-with-ddd-and-tdd-network:
+    name: clean-architecture-with-ddd-and-tdd-network
+    driver: bridge
