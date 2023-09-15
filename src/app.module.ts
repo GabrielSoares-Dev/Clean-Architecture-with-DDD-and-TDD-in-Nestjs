@@ -1,10 +1,16 @@
+import { InfraModule } from '@infra'
 import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { DynamooseModule } from 'nestjs-dynamoose'
+import { ConfigModule } from '@nestjs/config'
+import { PeopleModule } from './people/people.module'
 
 @Module({
-  imports: [DynamooseModule.forRoot({ local: true })],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    InfraModule,
+    PeopleModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

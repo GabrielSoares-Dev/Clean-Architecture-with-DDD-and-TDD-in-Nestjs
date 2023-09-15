@@ -13,6 +13,7 @@ services:
       - node-modules-clean-architecture-with-ddd-and-tdd:/app/node_modules
     networks:
       - clean-architecture-with-ddd-and-tdd-network
+      - dynamodb-network
 volumes:
   node-modules-clean-architecture-with-ddd-and-tdd:
     name: node-modules-clean-architecture-with-ddd-and-tdd
@@ -20,3 +21,6 @@ networks:
   clean-architecture-with-ddd-and-tdd-network:
     name: clean-architecture-with-ddd-and-tdd-network
     driver: bridge
+  dynamodb-network:
+    name: dynamodb-network 
+    external: true

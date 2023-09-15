@@ -1,3 +1,4 @@
+import type { CreatePeopleDto } from '@domain'
 export interface PeopleRepositoryInterface {
-  create()
+  create(people: CreatePeopleDto): Promise<CreatePeopleDto>
 }

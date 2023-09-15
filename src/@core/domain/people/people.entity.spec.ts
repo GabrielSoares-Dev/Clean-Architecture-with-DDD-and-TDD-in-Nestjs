@@ -1,4 +1,4 @@
-import People from './people.entity'
+import { People } from '@domain'
 
 describe('People', () => {
   it('Should be make a people', () => {
