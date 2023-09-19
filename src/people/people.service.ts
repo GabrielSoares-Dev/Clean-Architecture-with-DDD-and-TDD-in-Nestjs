@@ -1,6 +1,6 @@
-import { Injectable, Inject } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { CreateUpdatePeopleDto } from './dto/create-update-people.dto'
-import { CreatePeopleUseCase } from '@application'
+import { CreatePeopleUseCase } from '@application/use-cases'
 
 @Injectable()
 export class PeopleService {

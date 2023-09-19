@@ -1,3 +1,5 @@
+
+
 {
   "compilerOptions": {
     "module": "commonjs",
@@ -18,15 +20,6 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@domain": [
-        "./src/@core/domain"
-      ],
-      "@application": [
-        "./src/@core/application"
-      ],
-      "@infra": [
-        "./src/@core/infra"
-      ],
       "@domain/*": [
         "./src/@core/domain/*"
       ],

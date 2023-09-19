@@ -1,4 +1,4 @@
-import type { CreatePeopleDto, PeopleRepositoryInterface } from '@domain'
+import type { CreatePeopleDto, PeopleRepositoryInterface } from '@domain/people'
 
 export class CreatePeopleUseCase {
   constructor(private peopleRepository: PeopleRepositoryInterface) {}

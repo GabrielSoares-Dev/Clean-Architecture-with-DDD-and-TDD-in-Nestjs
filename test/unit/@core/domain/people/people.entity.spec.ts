@@ -1,4 +1,4 @@
-import { People } from '@domain'
+import { People } from '@domain/people'
 
 describe('People', () => {
   it('Should be make a people', () => {

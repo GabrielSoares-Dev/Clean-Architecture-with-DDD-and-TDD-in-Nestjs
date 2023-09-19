@@ -1,8 +1,7 @@
 import { InjectModel, Model } from 'nestjs-dynamoose'
-import { PeopleRepositoryInterface, People } from '@domain'
-import { Injectable } from '@nestjs/common'
-import type { CreatePeopleDto } from '@domain'
-import type { People as PeopleInterfaceModel, PeopleKey } from '@infra'
+import { PeopleRepositoryInterface, People } from '@domain/people'
+import type { CreatePeopleDto } from '@domain/people'
+import type { People as PeopleInterfaceModel, PeopleKey } from '@infra/db'
 
 export class DynamoDBPeopleRepository implements PeopleRepositoryInterface {
   constructor(
