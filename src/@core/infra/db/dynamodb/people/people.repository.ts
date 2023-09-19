@@ -6,7 +6,7 @@ import type { People as PeopleInterfaceModel, PeopleKey } from '@infra/db'
 export class DynamoDBPeopleRepository implements PeopleRepositoryInterface {
   constructor(
     @InjectModel('People')
-    private peopleModel: Model<PeopleInterfaceModel, PeopleKey>,
+    private readonly peopleModel: Model<PeopleInterfaceModel, PeopleKey>,
   ) {}
 
   async create(people: CreatePeopleDto): Promise<CreatePeopleDto> {

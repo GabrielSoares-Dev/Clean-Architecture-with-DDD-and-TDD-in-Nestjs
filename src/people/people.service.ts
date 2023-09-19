@@ -7,11 +7,7 @@ export class PeopleService {
   constructor(private readonly createPeopleUseCase: CreatePeopleUseCase) {}
 
   async create(createPeopleDto: CreateUpdatePeopleDto) {
-    try {
-      return await this.createPeopleUseCase.run(createPeopleDto)
-    } catch (error) {
-      console.log(error)
-    }
+    return await this.createPeopleUseCase.run(createPeopleDto)
   }
 
   findAll() {

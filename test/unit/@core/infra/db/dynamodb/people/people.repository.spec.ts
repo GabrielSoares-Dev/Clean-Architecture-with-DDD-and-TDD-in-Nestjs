@@ -4,21 +4,27 @@ import type { Model } from 'nestjs-dynamoose'
 
 const mockCreate = jest.fn()
 
-describe('DynamoDBEmployeeRepository', () => {
+describe('DynamoDBPeopleRepository', () => {
   let repository: DynamoDBPeopleRepository
   let mockModel: Model<PeopleInterfaceModel, PeopleKey>
 
   beforeEach(() => {
     mockModel = {
-      create: jest.fn(),
+      create: mockCreate,
     } as any
     repository = new DynamoDBPeopleRepository(mockModel)
-    mockCreate.mockClear()
   })
 
   describe('Create', () => {
-    it('should create a new people', async () => {
-      mockCreate.mockReturnValue({ promise: jest.fn().mockResolvedValue({}) })
+    it('Should be create a new people', async () => {
+      const mockReturn = {
+        name: 'John Doe',
+        age: 30,
+        profession: 'Software Developer',
+      }
+      mockCreate.mockImplementation(() => ({
+        toJSON: jest.fn().mockReturnValue(mockReturn),
+      }))
 
       const result = await repository.create({
         name: 'John Doe',
@@ -26,135 +32,8 @@ describe('DynamoDBEmployeeRepository', () => {
         profession: 'Software Developer',
       })
 
-      expect(result).toEqual({})
+      expect(result).toEqual(mockReturn)
       expect(mockCreate).toHaveBeenCalledTimes(1)
     })
   })
 })
-//   })
-//   describe('FindOne', () => {
-//     it('Should find an employee by ID', async () => {
-//       const mockEmployee = {
-//         id: { S: 'some-id' },
-//         name: { S: 'Gabriel' },
-//         age: { N: 20 },
-//         role: { S: 'Developer' },
-//       }
-
-//       mockQuery.mockReturnValue({
-//         promise: jest.fn().mockResolvedValue({ Items: [mockEmployee] }),
-//       })
-
-//       const result = await repository.findOne('some-id')
-
-//       expect(result).toEqual({
-//         age: 20,
-//         id: 'some-id',
-//         name: 'Gabriel',
-//         role: 'Developer',
-//       })
-//       expect(mockQuery).toHaveBeenCalledTimes(1)
-//     })
-//     it('Should throw an error if employee is not found', async () => {
-//       mockQuery.mockReturnValue({
-//         promise: jest.fn().mockResolvedValue({ Items: [] }),
-//       })
-
-//       await expect(async () => {
-//         await repository.remove('non-existent-id')
-//       }).rejects.toThrow('Employee not found')
-
-//       expect(mockQuery).toHaveBeenCalledTimes(1)
-//       expect(mockDeleteItem).not.toHaveBeenCalled()
-//     })
-//   })
-//   describe('Update', () => {
-//     it('Should update an existing employee', async () => {
-//       mockQuery.mockReturnValue({
-//         promise: jest.fn().mockResolvedValue({
-//           Items: [
-//             {
-//               id: { S: 'some-id' },
-//               name: { S: 'Gabriel' },
-//               age: { N: 20 },
-//               role: { S: 'Developer' },
-//             },
-//           ],
-//         }),
-//       })
-//       mockPutItem.mockReturnValue({ promise: jest.fn().mockResolvedValue({}) })
-
-//       const result = await repository.update('some-id', {
-//         name: 'Updated Name',
-//         age: 31,
-//         role: 'Senior Developer',
-//       })
-
-//       expect(result).toBeTruthy()
-//       expect(mockQuery).toHaveBeenCalledTimes(1)
-//       expect(mockPutItem).toHaveBeenCalledTimes(1)
-//     })
-//     it('Should throw an error if employee is not found', async () => {
-//       mockQuery.mockReturnValue({
-//         promise: jest.fn().mockResolvedValue({ Items: [] }),
-//       })
-
-//       await expect(async () => {
-//         await repository.remove('non-existent-id')
-//       }).rejects.toThrow('Employee not found')
-
-//       expect(mockQuery).toHaveBeenCalledTimes(1)
-//       expect(mockDeleteItem).not.toHaveBeenCalled()
-//     })
-//   })
-
-//   describe('FindAll', () => {
-//     it('Should find all employees', async () => {
-//       mockScan.mockReturnValue({
-//         promise: jest.fn().mockResolvedValue({ Items: [] }),
-//       })
-
-//       const result = await repository.findAll()
-
-//       expect(result).toEqual([])
-//       expect(mockScan).toHaveBeenCalledTimes(1)
-//     })
-//   })
-//   describe('Remove', () => {
-//     it('Should remove an existing employee', async () => {
-//       mockQuery.mockReturnValue({
-//         promise: jest.fn().mockResolvedValue({
-//           Items: [
-//             {
-//               id: { S: 'some-id' },
-//               name: { S: 'Gabriel' },
-//               age: { N: 20 },
-//               role: { S: 'Developer' },
-//             },
-//           ],
-//         }),
-//       })
-//       mockDeleteItem.mockReturnValue({
-//         promise: jest.fn().mockResolvedValue({}),
-//       })
-
-//       const result = await repository.remove('some-id')
-
-//       expect(result).toBeTruthy()
-//       expect(mockQuery).toHaveBeenCalledTimes(1)
-//       expect(mockDeleteItem).toHaveBeenCalledTimes(1)
-//     })
-//     it('Should throw an error if employee is not found', async () => {
-//       mockQuery.mockReturnValue({
-//         promise: jest.fn().mockResolvedValue({ Items: [] }),
-//       })
-
-//       await expect(async () => {
-//         await repository.remove('non-existent-id')
-//       }).rejects.toThrow('Employee not found')
-
-//       expect(mockQuery).toHaveBeenCalledTimes(1)
-//       expect(mockDeleteItem).not.toHaveBeenCalled()
-//     })
-//   })
-// })
