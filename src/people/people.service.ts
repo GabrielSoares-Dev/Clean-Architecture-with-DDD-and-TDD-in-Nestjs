@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, Inject } from '@nestjs/common'
 import { CreateUpdatePeopleDto } from './dto/create-update-people.dto'
 import { CreatePeopleUseCase } from '@application'
 
@@ -7,7 +7,11 @@ export class PeopleService {
   constructor(private readonly createPeopleUseCase: CreatePeopleUseCase) {}
 
   async create(createPeopleDto: CreateUpdatePeopleDto) {
-    return await this.createPeopleUseCase.run(createPeopleDto)
+    try {
+      return await this.createPeopleUseCase.run(createPeopleDto)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   findAll() {

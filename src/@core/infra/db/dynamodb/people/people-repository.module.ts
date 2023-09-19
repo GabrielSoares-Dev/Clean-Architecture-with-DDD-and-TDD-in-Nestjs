@@ -1,9 +1,14 @@
 import { Module } from '@nestjs/common'
 import { DynamooseModule } from 'nestjs-dynamoose'
-import { PeopleSchema } from '@infra'
+import {
+  DynamoDBPeopleRepository,
+  PeopleSchema,
+  DynamodbConfigModule,
+} from '@infra'
 
 @Module({
   imports: [
+    DynamodbConfigModule,
     DynamooseModule.forFeature([
       {
         name: 'People',
@@ -12,7 +17,7 @@ import { PeopleSchema } from '@infra'
       },
     ]),
   ],
-  controllers: [],
-  providers: [],
+  providers: [DynamoDBPeopleRepository],
+  exports: [DynamoDBPeopleRepository],
 })
 export class DynamoDBPeopleRepositoryModule {}

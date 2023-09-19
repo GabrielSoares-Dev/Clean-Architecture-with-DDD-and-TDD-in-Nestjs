@@ -1,10 +1,8 @@
-import { Module } from '@nestjs/common'
+import { Module, forwardRef } from '@nestjs/common'
 import { PeopleService } from './people.service'
 import { PeopleController } from './people.controller'
-import {
-  DynamoDBPeopleRepository,
-  DynamoDBPeopleRepositoryModule,
-} from '@infra'
+import { DynamoDBPeopleRepository } from '@infra'
+import { DynamoDBPeopleRepositoryModule } from '../@core/infra/db/dynamodb/people/people-repository.module'
 import { CreatePeopleUseCase } from '@application'
 import type { PeopleRepositoryInterface } from '@domain'
 
@@ -13,6 +11,7 @@ import type { PeopleRepositoryInterface } from '@domain'
   controllers: [PeopleController],
   providers: [
     PeopleService,
+
     {
       provide: CreatePeopleUseCase,
       useFactory: (peopleRepository: PeopleRepositoryInterface) => {

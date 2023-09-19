@@ -1,16 +1,11 @@
-import { InfraModule } from '@infra'
+import { EnvironmentConfigModule } from '@infra'
 import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { ConfigModule } from '@nestjs/config'
 import { PeopleModule } from './people/people.module'
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
-    InfraModule,
-    PeopleModule,
-  ],
+  imports: [EnvironmentConfigModule, PeopleModule],
   controllers: [AppController],
   providers: [AppService],
 })

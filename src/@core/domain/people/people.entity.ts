@@ -49,7 +49,7 @@ export class People {
     if (isInvalidAge) throw new Error('Invalid age')
   }
 
-  public toJSON() {
+  public toObject() {
     return {
       id: this.id,
       name: this.name,
